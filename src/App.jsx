@@ -1,6 +1,6 @@
 import Header from "./components/Header"
 import UserInput from "./components/UserInput"
-import Results from "./components/Reacts"
+import Results from "./components/Results"
 import { useState } from "react"
 
 function App() {
@@ -19,10 +19,13 @@ function App() {
       }
     });
   }
+
+  const isInputValid = userInput.duration >= 1;
   return <>
     <Header/>
     <UserInput userInput={userInput} onChange={handleChange}/>
-    <Results userInput={userInput}/>
+    {isInputValid && <Results userInput={userInput}/>}
+    {!isInputValid && <p className="center">Input Invalid</p>}
   </>
 }
 
